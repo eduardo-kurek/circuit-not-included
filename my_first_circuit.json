@@ -1,0 +1,45 @@
+﻿{
+  "id": "logic_gate_new_and",
+  "anim": "logic_new_and_kanim",
+  "display_name": "DISPLAY NAME",
+  "description": "DESCRIPTION",
+  "effect": "EFFECT",
+  "width": 2,
+  "height": 2,
+  "input_ports": [
+    {
+      "id": "i1",
+      "offset": {"x": 0, "y": 1},
+      "description": "i1 description",
+      "active_description": "i1 active_description",
+      "inactive_description": "i1 inactive_description",
+      "related_outputs": ["o1"]
+    },
+    {
+      "id": "i2",
+      "offset": {"x": 0, "y": 0},
+      "description": "i2 description",
+      "active_description": "i2 active_description",
+      "inactive_description": "i2 inactive_description",
+      "related_outputs": ["o1"]
+    },
+    {
+      "id": "i3",
+      "offset": {"x": 0, "y": -1},
+      "description": "i3 description",
+      "active_description": "i3 active_description",
+      "inactive_description": "i3 inactive_description",
+      "related_outputs": ["o1"]
+    }
+  ],
+  "output_ports": [
+    {
+      "id": "o1",
+      "offset": {"x": 1, "y": 0},
+      "description": "o1 description",
+      "active_description": "o1 active_description",
+      "inactive_description": "o1 inactive_description",
+      "result": "(i1 | i2) & i3"
+    }
+  ]
+}

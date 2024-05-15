@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A9E906F5-F469-4CEB-B553-F711801122E7}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>mod_oni</RootNamespace>
+        <AssemblyName>circuit-not-included</AssemblyName>
+        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <Deterministic>true</Deterministic>
+        <TargetFrameworkProfile/>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command=".\pre-build.bat"/>
+    </Target>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="start post-build.bat"/>
+    </Target>
+    <ItemGroup>
+        <Compile Include="Base\Circuit.cs" />
+        <Compile Include="Base\CircuitConfig.cs" />
+        <Compile Include="Builders\Builder.cs" />
+        <Compile Include="Builders\CircuitBuilder.cs" />
+        <Compile Include="Builders\CircuitConfigBuilder.cs" />
+        <Compile Include="CircuitManager.cs" />
+        <Compile Include="Exceptions\ArgumentException.cs" />
+        <Compile Include="Loader\CircuitDTO.cs" />
+        <Compile Include="Loader\ReversePolishNotation.cs" />
+        <Compile Include="Loader\ShuntingYard.cs" />
+        <Compile Include="Loader\Tokens\IShuntingOp.cs" />
+        <Compile Include="Loader\Tokens\Item.cs" />
+        <Compile Include="Loader\Tokens\Operation.cs" />
+        <Compile Include="Loader\Tokens\Parentesis.cs" />
+        <Compile Include="Loader\Tokens\Port.cs" />
+        <Compile Include="Loader\Tokens\Token.cs" />
+        <Compile Include="Loader\Validator.cs" />
+        <Compile Include="Patches.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Utils\Debug.cs" />
+        <Compile Include="Utils\Utils.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>lib\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>lib\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>lib\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>lib\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>lib\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="mscorlib" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include=".env.example">
+          <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
+        <None Include="App.config" Visible="false"/>
+        <None Include="mod-folder\mod.yaml">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="mod-folder\mod_info.yaml">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="README.md" CopyToOutputDirectory="Never" />
+        <None Include=".env" CopyToOutputDirectory="Never" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include=".gitignore" />
+      <Content Include="mod-folder\anim\assets\logic_new_and\logic_new_and_0.png" />
+      <Content Include="mod-folder\anim\assets\logic_new_and\logic_new_and_anim.bytes" />
+      <Content Include="mod-folder\anim\assets\logic_new_and\logic_new_and_build.bytes" />
+      <Content Include="mod-folder\anim\assets\test\test_0.png" />
+      <Content Include="mod-folder\anim\assets\test\test_anim.bytes" />
+      <Content Include="mod-folder\anim\assets\test\test_build.bytes" />
+      <Content Include="my_first_circuit.json" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+</Project>

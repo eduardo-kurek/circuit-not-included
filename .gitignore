@@ -1,0 +1,6 @@
+.env
+.idea
+bin/
+lib/
+obj/
+packages/
